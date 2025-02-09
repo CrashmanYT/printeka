@@ -11,23 +11,20 @@ class OrderItems extends Model
     use HasFactory, softDeletes;
 
     protected $fillable = [
-        'order_id',
-        'product_id',
         'quantity',
-        'price',
         'name',
         'description',
         'discount',
     ];
 
-    public function product(): \Illuminate\Database\Eloquent\Relations\BelongsTo
+    public function product(): \Illuminate\Database\Eloquent\Relations\belongsTo
     {
-        return $this->belongsTo(Product::class);
+        return $this->belongsTo(Product::class, 'product_id', 'id');
     }
 
     public function order(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {
-        return $this->belongsTo(Order::class);
+        return $this->belongsTo(Order::class, 'order_id');
     }
 
 }

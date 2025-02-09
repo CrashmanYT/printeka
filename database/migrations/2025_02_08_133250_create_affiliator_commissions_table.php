@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('affiliator_commissions', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('affiliator_id');
-            $table->unsignedBigInteger('order_id');
+            $table->foreignId('affiliator_id')->constrained()->onDelete('cascade');
+            $table->foreignId('order_id')->constrained()->onDelete('cascade');
             $table->decimal('commission_total');
             $table->softDeletes();
             $table->timestamps();

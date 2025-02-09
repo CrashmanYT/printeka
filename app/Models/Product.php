@@ -22,4 +22,14 @@ class Product extends Model
     {
         return $this->belongsTo(Unit::class);
     }
+
+    public function items(): \Illuminate\Database\Eloquent\Relations\HasMany
+    {
+        return $this->hasMany(OrderItems::class);
+    }
+
+    public function orders(): \Illuminate\Database\Eloquent\Relations\belongsToMany
+    {
+        return $this->belongsToMany(Order::class, 'order_items', 'product_id', 'order_id');
+    }
 }

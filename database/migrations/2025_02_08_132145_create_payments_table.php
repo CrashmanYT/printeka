@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('payments', function (Blueprint $table) {
             $table->id();
             $table->date('date');
+            $table->foreignIdFor(\App\Models\Order::class);
             $table->enum('status', ['pending', 'paid', 'refunded'])->default('pending');
             $table->double('amount');
             $table->double('paid_amount');
